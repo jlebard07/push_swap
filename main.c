@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:35:15 by jlebard           #+#    #+#             */
-/*   Updated: 2024/03/14 13:41:19 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/03/14 14:09:55 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main(int argc, char **argv)
 		write (1, "Error", 5);
 		return (NULL);
 	}
-	// creer une fonction error
+	// creer une fonction error 
 	// creer un file plus une fonction pour chacune des fonctions
 }
