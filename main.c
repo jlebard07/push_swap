@@ -14,11 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	if (ft_error_check(argc) != NULL)
-	{
-		write (1, "Error", 5);
-		return (NULL);
-	}
+	stack	*a;
+	stack	*b;
+
+	a = NULL;
+	b = NULL;
+	if(argc == 1 || (argc == 2 && !argv[1][0]))
+		return (1);
 	// creer une fonction error 
 	// creer un file plus une fonction pour chacune des fonctions
 }

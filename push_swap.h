@@ -13,6 +13,16 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+typedef struct stack
+{
+	int		 data;
+	struct stack *current;
+	struct	stack *previous;
+	struct	stack *next;
+}	stack;
+
+
+
 # include "ft_printf/ft_printf.h"
 # include "ft_printf/libft/libft.h"
 # include <unistd.h>
