@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 13:35:15 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/03 09:12:55 by jlebard          ###   ########.fr       */
+/*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/03 11:38:37 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-int	main(int argc, char **argv)
+# include "ft_printf/ft_printf.h"
+# include "ft_printf/libft/libft.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+
+typedef struct Stack
 {
-	stack	*a;
-	stack	*b;
+	int		 data;
+	struct Stack	*current;
+	struct	Stack	*previous;
+	struct	Stack	*next;
+}	stack;
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	if (argc == 2)
-		stack_init(argv[1]);
-	// creer une fonction error 
-	// creer un file plus une fonction pour chacune des fonctions
-}
+bool	ft_check_error_int_array(int *int_arr);
+bool	chek_error_str(char *str);
+
+#endif
+	

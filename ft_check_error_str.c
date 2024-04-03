@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_check_error_str.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 13:35:15 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/03 09:12:55 by jlebard          ###   ########.fr       */
+/*   Created: 2024/04/03 10:17:24 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/03 11:01:55 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+bool	chek_error_str(char *str)
 {
-	stack	*a;
-	stack	*b;
+	int	i;
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	if (argc == 2)
-		stack_init(argv[1]);
-	// creer une fonction error 
-	// creer un file plus une fonction pour chacune des fonctions
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < 48 || str[i] > 57 || str[i] != 32)
+			return (false);
+		i++;
+	}
+	return (true);
 }

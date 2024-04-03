@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_check_error_int_array.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
-/*   Updated: 2024/03/14 14:07:34 by jlebard          ###   ########.fr       */
+/*   Created: 2024/04/03 11:29:41 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/03 11:37:58 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/push_swap.h"
 
-typedef struct stack
+bool	ft_check_error_int_array(int *int_arr)
 {
-	int		 data;
-	struct stack *current;
-	struct	stack *previous;
-	struct	stack *next;
-}	stack;
+	int	i;
+	int	j;
 
-
-
-# include "ft_printf/ft_printf.h"
-# include "ft_printf/libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-#endif
+	i = 0;
+	j = 0;
+	while (int_arr[i])
+		i++;
+	while (i >= 0)
+	{
+		while (int_arr[j])
+		{
+			if (int_arr[j] == int_arr[i])
+				return (false);
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
