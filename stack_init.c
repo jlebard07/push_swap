@@ -1,59 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   stack_inti.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 13:40:06 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/03 11:39:36 by jlebard          ###   ########.fr       */
+/*   Created: 2024/04/04 15:12:19 by jlebard            #+#    #+#             */
+/*   Updated: 2024/04/04 15:12:19 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+# include "../includes/push_swap.h"
 
-static int	*convert_in_int_array(char **str_arr)
+static stack	*create_stack(int n)
 {
-	int	i;
-	int	*int_array;
+	stack	*a;
 
-	i = 0;
-	while (str_arr[i])
-		i++;
-	int_array = malloc((i + 1) * sizeof(int));
-	if (!int_array)
+	a = malloc(sizeof(stack))
+	if (!a)
 		return (NULL);
-	i = 0;
-	while (str_arr[i])
-	{
-		int_array[i] = ft_atoi(str_arr[i]);
-		i++;
-	}
-	return (int_array);
+	a->data = value;
+	a->current = NULL;
+	a->previous = NULL;
+	a->next = NULL;
+	return (a);
 }
 
-static int	*split_and_check(char	*str)
+stack	*stack_init(int *array, int size)
 {
-	char	**temp;
+	stack	*ba;
+	stack	*ca;
+	stack	*ea;
 	int		i;
-	int		*int_array;
 
+	if (size == 0 || array == NULL)
+		return (NULL);
 	i = 0;
-	if (!ft_check_error_str(str))
+	ca = NULL;
+	ea = NULL;
+	ba = create_stack(array[0]);
+	if (!ba)
 		return (NULL);
-	temp = ft_split(str, ' ');
-	int_array = convert_in_int_array(temp);
-	free(temp);
-	if (ft_check_error_int_array(int_array) == false)
-		return (NULL);
-	return (int_array);
-}
-
-stack	stack_init(char	*str)
-{
-	char	**temp;
-	stack	ba;
-	stack	ea;
-
-	temp = split_and_check(str);
+	ea = ba;
+	while (array[i++] && i < size)
+	{
+		ca = create_stack(array[i]);
+		if (i == 1)
+			ba->next = ca;
+		ca->previous = ea;
+		ea->next = ca;
+		na = ca;
+	}
+	ba->previous = ea;
+	return ba;
 }
