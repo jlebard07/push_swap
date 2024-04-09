@@ -16,10 +16,10 @@ static stack	*create_stack(int n)
 {
 	stack	*a;
 
-	a = malloc(sizeof(stack))
+	a = malloc(sizeof(stack));
 	if (!a)
 		return (NULL);
-	a->data = value;
+	a->data = n;
 	a->current = NULL;
 	a->previous = NULL;
 	a->next = NULL;
@@ -49,8 +49,8 @@ stack	*stack_init(int *array, int size)
 			ba->next = ca;
 		ca->previous = ea;
 		ea->next = ca;
-		na = ca;
+		ea = ca;
 	}
 	ba->previous = ea;
-	return ba;
+	return (ba);
 }
