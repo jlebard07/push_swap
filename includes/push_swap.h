@@ -26,10 +26,12 @@ typedef struct Stack
 	struct Stack	*current;
 	struct	Stack	*previous;
 	struct	Stack	*next;
-}	stack;
+}	t_stack_node;
 
 bool	ft_check_error_int_array(int *int_arr);
 bool	chek_error_str(char *str);
+stack	*stack_init(int *array, int size);
+int		*split_and_check(char	*str);
 
 #endif
 	

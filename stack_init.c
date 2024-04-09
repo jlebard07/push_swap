@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_inti.c                                       :+:      :+:    :+:   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 # include "../includes/push_swap.h"
 
-static stack	*create_stack(int n)
+static t_stack_node	*creat_node(int n)
 {
-	stack	*a;
+	t_stack_node	*a;
 
-	a = malloc(sizeof(stack));
+	a = malloc(sizeof(t_stack_node));
 	if (!a)
 		return (NULL);
 	a->data = n;
@@ -26,11 +26,11 @@ static stack	*create_stack(int n)
 	return (a);
 }
 
-stack	*stack_init(int *array, int size)
+t_stack_node	*stack_init(int *array, int size)
 {
-	stack	*ba;
-	stack	*ca;
-	stack	*ea;
+	t_stack_node	*ba;
+	t_stack_node	*ca;
+	t_stack_node	*ea;
 	int		i;
 
 	if (size == 0 || array == NULL)
@@ -38,13 +38,13 @@ stack	*stack_init(int *array, int size)
 	i = 0;
 	ca = NULL;
 	ea = NULL;
-	ba = create_stack(array[0]);
+	ba = creat_node(array[0]);
 	if (!ba)
 		return (NULL);
 	ea = ba;
 	while (array[i++] && i < size)
 	{
-		ca = create_stack(array[i]);
+		ca = creat_node(array[i]);
 		if (i == 1)
 			ba->next = ca;
 		ca->previous = ea;
