@@ -14,18 +14,24 @@
 
 t_stack_node	*rotate(t_stack_node *ba)
 {
-	t_stack_node	*ea;
 	t_stack_node	*current;
 	int				temp;
+	int				temp2;
+	int				last_data;
 	
-	ea = ba->previous;
-	current = ea->previous;
+	current = ba->previous;
+	last_data = ba->previous->data;
+	temp2 = NULL;
 	while(current != ba)
 	{
-		current->data = next->data;
+		if (temp2 != NULL)
+			temp = temp2;
+		else 
+			temp = ba->data;
+		temp2 = current->data;
+		current->data = temp;
 		current = current->previous;
 	}
-	ea->data = ba->data;
-	ba->data = 
+	ba->data = last_data;
 	return (ba);
 }
