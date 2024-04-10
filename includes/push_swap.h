@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/03 11:38:37 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/10 13:25:25 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ typedef struct Stack
 
 bool	ft_check_error_int_array(int *int_arr);
 bool	chek_error_str(char *str);
-stack	*stack_init(int *array, int size);
+t_stack_node	*stack_init(int *array, int size);
 int		*split_and_check(char	*str);
+t_stack_node	*reverse_rotate(t_stack_node *ba);
+t_stack_node	*rotate(t_stack_node *ba);
+void	push(t_stack_node *a, t_stack_node *b);
+t_stack_node	*swap(t_stack_node *a);
 
 #endif
 	
