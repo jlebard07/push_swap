@@ -6,17 +6,21 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:35 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/10 13:22:57 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/12 11:20:27 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push(t_stack_node *a, t_stack_node *b)
+static void	push(t_stack_node *a, t_stack_node *b)
 {
 	int	i;
 
-	i = a->data;
-	a->data = b->data;
-	b->data = i;
+	if (a == NULL || b == NULL)
+		return ;
+	a->next = b;
+	a->previous = b->previous;
+	a->index = 1;
+	b->index = 2;
+	
 }

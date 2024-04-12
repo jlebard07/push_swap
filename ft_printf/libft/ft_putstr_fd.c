@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:13:04 by jlebard           #+#    #+#             */
-/*   Updated: 2023/11/20 12:13:04 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/12 10:38:20 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	ft_putstr_fd(char *s, int fd)
 
 // int main()
 // {
-// 	char *s = "hdziuh";
 // 	int fd = 1;
-// 	ft_putstr_fd(s, fd);
-//	write (fd, '\n', 1);
+// 	ft_putstr_fd("ndwio", fd);
 // 	return 0;
 // }
