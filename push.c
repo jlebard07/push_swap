@@ -12,15 +12,26 @@
 
 #include "../includes/push_swap.h"
 
-static void	push(t_stack_node *a, t_stack_node *b)
+static void	push(t_stack_node **src_pile, t_stack_node dest_pile)
 {
-	int	i;
+	t_stack_node	*temp;
 
-	if (a == NULL || b == NULL)
+	if(*src_pile == NULL)
 		return ;
-	a->next = b;
-	a->previous = b->previous;
-	a->index = 1;
-	b->index = 2;
-	
+	temp = (*src_pile)->next;
+	(*src_pile)->next = *dest;
+	*dest = *src;
+	*src = temp;	
+}
+
+void	push_a(t_stack_node **a, t_stack_node **b)
+{
+	push(b, a);
+	ft_putstr_fd("pa\n", 1);
+}
+
+void	push_b(t_stack_node **a, t_stack_node **b)
+{
+	push(a, b);
+	ft_putstr_fd("pb\n", 1);
 }

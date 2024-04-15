@@ -36,11 +36,20 @@ int		*split_and_check(char	*str);
 t_stack_node	*reverse_rotate(t_stack_node *ba);
 t_stack_node	*rotate(t_stack_node *ba);
 //push
-void	push(t_stack_node *a, t_stack_node *b);
+void	push_a(t_stack_node **a, t_stack_node **b);
+void	push_b(t_stack_node **a, t_stack_node **b);
 // swap
 void	sa(t_stack_node **a);
 void	sb(t_stack_node **b);
 void	ss(t_stack_node **a, t_stack_node **b);
+// rotate
+void	ra(t_stack_node a);
+void	rb(t_stack_node b);
+void	rr(t_stack_node a, t_stack_node b);
+//reverse_rotate
+void	rra(t_stack_node a);
+void	rrb(t_stack_node b);
+void	rrr(t_stack_node a, t_stack_node b);
 
 #endif
 	
