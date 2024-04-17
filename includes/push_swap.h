@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/12 11:16:17 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/17 16:19:33 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ bool	ft_check_error_int_array(int *int_arr);
 bool	chek_error_str(char *str);
 t_stack_node	*stack_init(int *array, int size);
 int		*split_and_check(char	*str);
-t_stack_node	*reverse_rotate(t_stack_node *ba);
-t_stack_node	*rotate(t_stack_node *ba);
+size_t	pile_size(t_stack_node *stack);
 //push
-void	push_a(t_stack_node **a, t_stack_node **b);
-void	push_b(t_stack_node **a, t_stack_node **b);
+void	pa(t_stack_node **a, t_stack_node **b);
+void	pb(t_stack_node **a, t_stack_node **b);
 // swap
 void	sa(t_stack_node **a);
 void	sb(t_stack_node **b);

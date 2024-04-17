@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:15:23 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/12 11:14:28 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/17 15:12:42 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ static void	swap(t_stack_node *stack)
 
 void	sa(t_stack_node **a)
 {
-	swap(*a);
+	swap(a);
 	ft_putstr_fd("sa\n", 1);
 }
 
 void	sb(t_stack_node **b)
 {
-	swap(*b);
+	swap(b);
 	ft_putstr_fd("sb\n", 1);
 }
 
 void	ss(t_stack_node **a, t_stack_node **b)
 {
-	swap(*a);
-	swap(*b);
+	swap(a);
+	swap(b);
 	ft_putstr_fd("ss\n", 1);
 }

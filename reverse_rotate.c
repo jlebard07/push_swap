@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:23:29 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/16 11:32:08 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/17 15:13:11 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ static void	reverse_rotate(t_stack_node **stack)
 void	rra(t_stack_node **a)
 {
 	reverse_rotate(a);
-	ft_putstr_fd("rra", 1);
+	ft_putstr_fd("rra\n", 1);
 }
 
 void	rrb(t_stack_node **b)
 {
 	reverse_rotate(b);
-	ft_putstr_fd("rrb", 1);
+	ft_putstr_fd("rrb\n", 1);
 }
 
 void	rrr(t_stack_node **a, t_stack_node **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	ft_putstr_fd("rra", 1);
+	ft_putstr_fd("rra\n", 1);
 }

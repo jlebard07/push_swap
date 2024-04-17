@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   algorithme.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 13:20:35 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/17 16:19:18 by jlebard          ###   ########.fr       */
+/*   Created: 2024/04/17 15:17:32 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/17 16:20:14 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	push(t_stack_node **src_pile, t_stack_node **dest_pile)
+void	sort_till_3(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*temp;
+	size_t	size;
 
-	if (*src_pile == NULL)
+	size = pile_size(*a);
+	if (size <= 3)
 		return ;
-	temp = (*src_pile)->next;
-	(*src_pile)->next = *dest_pile;
-	*dest_pile = *src_pile;
-	*src_pile = temp;
-}
-
-void	pa(t_stack_node **a, t_stack_node **b)
-{
-	push(b, a);
-	ft_putstr_fd("pa\n", 1);
-}
-
-void	pa(t_stack_node **a, t_stack_node **b)
-{
-	push(a, b);
-	ft_putstr_fd("pb\n", 1);
+	while (size > 3)
+	{
+		push_b(a, b);
+		size = pile_size(a);
+	}
 }

@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   get_positions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 13:20:35 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/17 16:19:18 by jlebard          ###   ########.fr       */
+/*   Created: 2024/04/17 15:13:21 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/17 15:17:15 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	push(t_stack_node **src_pile, t_stack_node **dest_pile)
+size_t	pile_size(t_stack_node *stack)
 {
 	t_stack_node	*temp;
+	size_t			i;
 
-	if (*src_pile == NULL)
-		return ;
-	temp = (*src_pile)->next;
-	(*src_pile)->next = *dest_pile;
-	*dest_pile = *src_pile;
-	*src_pile = temp;
-}
-
-void	pa(t_stack_node **a, t_stack_node **b)
-{
-	push(b, a);
-	ft_putstr_fd("pa\n", 1);
-}
-
-void	pa(t_stack_node **a, t_stack_node **b)
-{
-	push(a, b);
-	ft_putstr_fd("pb\n", 1);
+	if (stack == NULL)
+		return (0);
+	i = 1;
+	temp = stack;
+	while (temp->next != NULL)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
 }
