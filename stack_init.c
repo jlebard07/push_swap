@@ -6,13 +6,13 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:14:32 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/10 13:14:35 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:16:38 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static t_stack_node	*creat_node(int n)
+static t_stack_node	*create_node(int n)
 {
 	t_stack_node	*a;
 
@@ -20,7 +20,6 @@ static t_stack_node	*creat_node(int n)
 	if (!a)
 		return (NULL);
 	a->data = n;
-	a->current = NULL;
 	a->previous = NULL;
 	a->next = NULL;
 	return (a);
@@ -38,13 +37,13 @@ t_stack_node	*stack_init(int *array, int size)
 	i = 0;
 	ca = NULL;
 	ea = NULL;
-	ba = creat_node(array[0]);
+	ba = create_node(array[0]);
 	if (!ba)
 		return (NULL);
 	ea = ba;
 	while (array[i++] && i < size)
 	{
-		ca = creat_node(array[i]);
+		ca = create_node(array[i]);
 		if (i == 1)
 			ba->next = ca;
 		ca->previous = ea;

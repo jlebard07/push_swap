@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:17:32 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/17 16:20:14 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/22 14:05:00 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sort_till_3(t_stack_node **a, t_stack_node **b)
 	size_t	size;
 
 	size = pile_size(*a);
-	if (size <= 3)
+	if (size < 3)
 		return ;
 	while (size > 3)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 18:52:12 by jlebard            #+#    #+#             */
-/*   Updated: 2024/04/17 18:52:12 by jlebard           ###   ########.fr       */
+/*   Created: 2024/04/22 13:52:17 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/22 13:53:46 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_sorted(t_stack_node *stack)
 {
-	t_stack_node	temp;
+	t_stack_node	*temp;
 	int				i;
 
 	temp = stack;
@@ -30,8 +30,8 @@ bool	is_sorted(t_stack_node *stack)
 
 static t_stack_node	*highest_data(t_stack_node *stack)
 {
-	t_stack_node	temp;
-	t_stack_node	highest;
+	t_stack_node	*temp;
+	t_stack_node	*highest;
 	int				max;
 
 	max = INT_MIN;
@@ -39,9 +39,9 @@ static t_stack_node	*highest_data(t_stack_node *stack)
 	temp = stack;
 	while (temp->next != NULL)
 	{
-		if (temp->value > max)
+		if (temp->data > max)
 		{
-			max = temp->value;
+			max = temp->data;
 			highest = temp;
 		}
 		temp = temp->next;
@@ -52,12 +52,12 @@ static t_stack_node	*highest_data(t_stack_node *stack)
 void	sort_3(t_stack_node **stack)
 {
 	t_stack_node	*highest;
-	
+
 	highest = highest_data(*stack);
 	if (stack == highest)
-		ra(*stack);
+		ra(**stack);
 	else if ((*stack)->next == highest)
-		rra(stack);
+		rra(**stack);
 	if ((*stack)->data > (*stack)->next->data)
 		sa(stack);
 }
