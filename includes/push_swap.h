@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
 
 typedef struct Stack
 {
@@ -34,6 +35,9 @@ bool	chek_error_str(char *str);
 t_stack_node	*stack_init(int *array, int size);
 int		*split_and_check(char	*str);
 size_t	pile_size(t_stack_node *stack);
+size_t	stack_size(t_stack_node *stack);
+bool	is_sorted(t_stack_node *stack);
+void	sort_3(t_stack_node **stack);
 //push
 void	pa(t_stack_node **a, t_stack_node **b);
 void	pb(t_stack_node **a, t_stack_node **b);
