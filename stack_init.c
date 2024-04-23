@@ -22,6 +22,11 @@ static t_stack_node	*create_node(int n)
 	a->data = n;
 	a->previous = NULL;
 	a->next = NULL;
+	a->price = 0;
+	a->target = NULL;
+	a->cheapest = false;
+	a->under_avg_rank = false;
+	a->index = NULL;
 	return (a);
 }
 

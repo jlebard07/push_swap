@@ -25,6 +25,7 @@ typedef struct Stack
 {
 	int				data;
 	int				index;
+	int				price;
 	bool			cheapest;
 	bool			under_avg_rank;
 	struct Stack	*target;
@@ -32,15 +33,21 @@ typedef struct Stack
 	struct Stack	*next;
 }	t_stack_node;
 
+
+//check des erreurs
 bool			ft_check_error_int_array(int *int_arr);
 bool			chek_error_str(char *str);
+//initialisation des piles
 t_stack_node	*stack_init(int *array, int size);
 int				*split_and_check(char	*str);
+void			set_pile(t_stack_node **a, t_stack_node **b);
 //operations sur les piles
 void			current_position(t_stack_node **stack);
 size_t			pile_size(t_stack_node *stack);
 bool			is_sorted(t_stack_node *stack);
-void			sort_3(t_stack_node **stack);
+void			target_node(t_stack_node **a, t_stack_node **b);
+void			who_cheapest(t_stack_node **stack);
+void			set_price(t_stack_node **a, t_stack_node **b)
 //commandes
 void			pa(t_stack_node **a, t_stack_node **b);
 void			pb(t_stack_node **a, t_stack_node **b);
@@ -53,5 +60,7 @@ void			rr(t_stack_node a, t_stack_node b);
 void			rra(t_stack_node a);
 void			rrb(t_stack_node b);
 void			rrr(t_stack_node a, t_stack_node b);
+//algorithmie
+void			sort_3(t_stack_node **stack);
 
 #endif

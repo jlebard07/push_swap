@@ -52,7 +52,7 @@ void	current_position(t_stack_node **stack)
 	}
 }
 
-void	target_node(t_stack_node **a, t_stack_node **b)
+void	target(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*tempa;
 	t_stack_node	*tempb;
@@ -60,11 +60,60 @@ void	target_node(t_stack_node **a, t_stack_node **b)
 
 	tempa = *a;
 	tempb = *b;
+	diff_match = LONG_MAX;
 	while (tempb->next!= NULL)
 	{
 		while (tempa->next != NULL)
 		{
-			tempb->value - tempa
+			if (0 < (long int)tempb->data - (long int)tempa->data < diff_match)
+			{
+				(long int)tempb->data - (long int)tempa->data;
+				tempb->target = tempa;
+			}
+			tempa = tempb->next;
 		}
+		tempb = tempb->next;
+		tempa = *a;
 	}
+}
+
+void	set_price(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*temp;
+
+	temp = *b;
+	while (temp->next != NULL)
+	{
+		if (temp->under_avg_rank == true && temp->target->under_avg_rank == true)
+			temp->price = temp->index + temp->target->index;
+		else if (temp->under_avg_rank == false && temp->target->under_avg_rank == true)
+			temp->price = pile_size(b) - temp->index + 1 + temp->target->index;
+		else if (temp->under_avg_rank == true && temp->target->under_avg_rank == false)
+			temp->price = temp->index + 1 + pile_size(a)temp->target->index;
+		else if (pile_size(b) - temp->index == pile_size(a) - temp->target->index)
+			temp->price = pile_size(b) - temp->index + 1 + pile_size(a) - temp->target->index;
+		else
+			temp->price = pile_size(b) - temp->index + 2 + pile_size(a) - temp->target->index;
+	}
+}
+
+void	who_cheapest(t_stack_node **stack)
+{
+	t_stack_node	*temp;
+	t_stack_node	*cheapest;
+	int				i;
+
+	temp = *stack;
+	cheapest = NULL;
+	i = INT_MAX;
+	while (temp->next != NULL)
+	{
+		if (i > temp->price)
+		{
+			cheapest = temp;
+			i = temp->price;
+		}
+		temp = temp->next;
+	}
+	cheapest->cheapest = true;
 }
