@@ -6,114 +6,112 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:13:21 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/22 16:00:26 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/24 13:58:13 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-size_t	pile_size(t_stack_node **stack)
+size_t	pile_size(t_stack_node *stack)
 {
-	t_stack_node	*temp;
 	size_t			i;
 
 	if (stack == NULL)
 		return (0);
-	i = 1;
-	temp = *stack;
-	while (temp->next != NULL)
+	i = 0;
+	while (stack)
 	{
 		i++;
-		temp = temp->next;
+		stack = stack->next;
 	}
 	return (i);
 }
 
-void	current_position(t_stack_node **stack)
+void	current_position(t_stack_node *stack)
 {
-	t_stack_node	*temp;
 	int				i;
 	int				avg_rank;
 
 	avg_rank = pile_size(stack) / 2;
 	if (!stack)
 		return ;
-	temp = *stack;
 	i = 0;
-	while (temp->next != NULL)
+	while (stack)
 	{
-		temp->index = i;
+		stack->index = i;
 		if (i < avg_rank)
-			temp->under_avg_rank = true;
+			stack->under_avg_rank = true;
 		else
-			temp->under_avg_rank = false;
+			stack->under_avg_rank = false;
 		i++;
-		temp = temp->next;
+		stack = stack->next;
 	}
 }
 
-void	target(t_stack_node **a, t_stack_node **b)
+void	target(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node	*tempa;
-	t_stack_node	*tempb;
 	long int		diff_match;
+	t_stack_node	*save_start;
 
-	tempa = *a;
-	tempb = *b;
+	save_start = a;
 	diff_match = LONG_MAX;
-	while (tempb->next!= NULL)
+	while (b)
 	{
-		while (tempa->next != NULL)
+		while (a)
 		{
-			if (0 < (long int)tempb->data - (long int)tempa->data < diff_match)
+			if (0 < (long int)b->data - (long int)a->data < diff_match)
 			{
-				(long int)tempb->data - (long int)tempa->data;
-				tempb->target = tempa;
+				diff_match = (long int)b->data - (long int)a->data;
+				b->target = a;
 			}
-			tempa = tempb->next;
+			a = a->next;
 		}
-		tempb = tempb->next;
-		tempa = *a;
+		b = b->next;
+		a = save_start;
 	}
 }
 
-void	set_price(t_stack_node **a, t_stack_node **b)
+void	set_price(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node	*temp;
+	int				sa;
+	int				sb;
 
-	temp = *b;
-	while (temp->next != NULL)
+	sa = pile_size(a);
+	sb = pile_size(b);
+	while (b->next != NULL)
 	{
-		if (temp->under_avg_rank == true && temp->target->under_avg_rank == true)
-			temp->price = temp->index + temp->target->index;
-		else if (temp->under_avg_rank == false && temp->target->under_avg_rank == true)
-			temp->price = pile_size(b) - temp->index + 1 + temp->target->index;
-		else if (temp->under_avg_rank == true && temp->target->under_avg_rank == false)
-			temp->price = temp->index + 1 + pile_size(a)temp->target->index;
-		else if (pile_size(b) - temp->index == pile_size(a) - temp->target->index)
-			temp->price = pile_size(b) - temp->index + 1 + pile_size(a) - temp->target->index;
+		if (b->under_avg_rank == true
+			&& b->target->under_avg_rank == true)
+			b->price = b->index + b->target->index;
+		else if (b->under_avg_rank == false
+			&& b->target->under_avg_rank == true)
+			b->price = sb - b->index + 1 + b->target->index;
+		else if (b->under_avg_rank == true
+			&& b->target->under_avg_rank == false)
+			b->price = b->index + 1 + sa - b->target->index;
+		else if (sb - b->index == sa - b->target->index)
+			b->price = sb - b->index + 1 + sa - b->target->index;
 		else
-			temp->price = pile_size(b) - temp->index + 2 + pile_size(a) - temp->target->index;
+			b->price = sb - b->index + 2 + sa - b->target->index;
+		b = b->next;
 	}
 }
 
-void	who_cheapest(t_stack_node **stack)
+void	set_cheapest(t_stack_node *stack)
 {
-	t_stack_node	*temp;
 	t_stack_node	*cheapest;
 	int				i;
 
-	temp = *stack;
 	cheapest = NULL;
 	i = INT_MAX;
-	while (temp->next != NULL)
+	while (stack->next != NULL)
 	{
-		if (i > temp->price)
+		if (i > stack->price)
 		{
-			cheapest = temp;
-			i = temp->price;
+			cheapest = stack;
+			i = stack->price;
 		}
-		temp = temp->next;
+		stack = stack->next;
 	}
 	cheapest->cheapest = true;
 }

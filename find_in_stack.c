@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_error_int_array.c                         :+:      :+:    :+:   */
+/*   find_in_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 11:29:41 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 11:20:53 by jlebard          ###   ########.fr       */
+/*   Created: 2024/04/24 14:30:18 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/24 14:31:35 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-bool	ft_check_error_int_array(int *int_arr)
+t_stack_node	*who_cheapest(t_stack_node *stack)
 {
-	int	i;
-	int	j;
+	while (stack && stack->cheapest == false)
+		stack = stack->next;
+	return (stack);
+}
 
-	i = 0;
-	j = 0;
-	while (int_arr[i])
-		i++;
-	while (i >= 0)
+t_stack_node	*find_lowest(t_stack_node *stack)
+{
+	t_stack_node	*lowest;
+	int				i;
+
+	i = INT_MAX;
+	while (stack)
 	{
-		while (int_arr[j])
+		if (stack->data < i)
 		{
-			if (int_arr[j] == int_arr[i])
-				return (false);
-			j++;
+			lowest = stack;
+			i = stack->data;
 		}
-		i++;
+		stack = stack->next;
 	}
-	return (true);
+	return (lowest);
 }

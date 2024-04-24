@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   node_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 13:54:52 by jlebard            #+#    #+#             */
-/*   Updated: 2024/04/23 13:54:52 by jlebard           ###   ########.fr       */
+/*   Created: 2024/04/24 10:49:00 by jlebard           #+#    #+#             */
+/*   Updated: 2024/04/24 12:44:46 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	set_pile(t_stack_node **a, t_stack_node **b)
+void	set_pile_utils(t_stack_node *a, t_stack_node *b)
 {
 	current_position(a);
 	current_position(b);

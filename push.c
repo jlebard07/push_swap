@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:35 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/17 16:19:18 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/24 12:41:54 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	pa(t_stack_node **a, t_stack_node **b)
 	ft_putstr_fd("pa\n", 1);
 }
 
-void	pa(t_stack_node **a, t_stack_node **b)
+void	pb(t_stack_node **a, t_stack_node **b)
 {
 	push(a, b);
 	ft_putstr_fd("pb\n", 1);

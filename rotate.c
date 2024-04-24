@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:14:05 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/17 15:12:30 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/24 11:19:21 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	rotate(t_stack_node **stack)
 	t_stack_node	*bottom;
 
 	temp = *stack;
-	while (temp->next != NULL)
+	while (temp)
 		temp = temp ->next;
 	bottom = temp;
 	temp = *stack;

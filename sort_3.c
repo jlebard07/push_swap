@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:52:17 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/22 13:53:46 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:32:11 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 bool	is_sorted(t_stack_node *stack)
 {
-	t_stack_node	*temp;
 	int				i;
 
-	temp = stack;
-	while (temp->next != NULL)
+	while (stack->next != NULL)
 	{
-		i = temp->data;
-		temp = temp->next;
-		if (i < temp->data)
+		i = stack->data;
+		stack = stack->next;
+		if (i < stack->data)
 			return (false);
 	}
 	return (true);
@@ -30,21 +28,19 @@ bool	is_sorted(t_stack_node *stack)
 
 static t_stack_node	*highest_data(t_stack_node *stack)
 {
-	t_stack_node	*temp;
 	t_stack_node	*highest;
 	int				max;
 
 	max = INT_MIN;
 	highest = NULL;
-	temp = stack;
-	while (temp->next != NULL)
+	while (stack->next != NULL)
 	{
-		if (temp->data > max)
+		if (stack->data > max)
 		{
-			max = temp->data;
-			highest = temp;
+			max = stack->data;
+			highest = stack;
 		}
-		temp = temp->next;
+		stack = stack->next;
 	}
 	return (highest);
 }
@@ -55,9 +51,9 @@ void	sort_3(t_stack_node **stack)
 
 	highest = highest_data(*stack);
 	if (stack == highest)
-		ra(**stack);
+		ra(stack);
 	else if ((*stack)->next == highest)
-		rra(**stack);
+		rra(stack);
 	if ((*stack)->data > (*stack)->next->data)
 		sa(stack);
 }

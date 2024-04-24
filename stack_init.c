@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:14:32 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/22 15:16:38 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:48:48 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_stack_node	*create_node(int n)
 	return (a);
 }
 
-t_stack_node	*stack_init(int *array, int size)
+t_stack_node	**stack_init(int **array, int size)
 {
 	t_stack_node	*ba;
 	t_stack_node	*ca;
@@ -56,5 +56,5 @@ t_stack_node	*stack_init(int *array, int size)
 		ea = ca;
 	}
 	ba->previous = ea;
-	return (ba);
+	return (&ba);
 }
