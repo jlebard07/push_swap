@@ -6,14 +6,13 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 14:31:47 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:15:23 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "/libft/libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -31,18 +30,24 @@ typedef struct Stack
 	struct Stack	*previous;
 	struct Stack	*next;
 }	t_stack_node;
-//gestion des erreurs
+//utils
+char			**ft_split(char const *s, char c);
+void			ft_putstr_fd(char *s, int fd);
+int				ft_atoi(const char	*str);
+//gestion des erreurs et free
 bool			ft_check_error_int_array(int *int_arr);
-bool			chek_error_str(char *str);
+bool			ft_check_error_str(char *str);
+void			ft_write_error(void);
+void			free_stack(t_stack_node **stack);
 //initialisation des piles
-t_stack_node	*stack_init(int *array, int size);
-int				*split_and_check(char	*str);
-void			set_pile_utils(t_stack_node **a, t_stack_node **b);
+t_stack_node	**stack_init(char **argv, int size);
+char			**split_and_check(char **argv);
+void			set_pile_utils(t_stack_node *a, t_stack_node *b);
 //operations sur les piles
 void			current_position(t_stack_node *stack);
 size_t			pile_size(t_stack_node *stack);
 bool			is_sorted(t_stack_node *stack);
-void			target_node(t_stack_node **a, t_stack_node **b);
+void			target_node(t_stack_node *a, t_stack_node *b);
 void			set_cheapest(t_stack_node *stack);
 void			set_price(t_stack_node *a, t_stack_node *b);
 t_stack_node	*who_cheapest(t_stack_node *stack);

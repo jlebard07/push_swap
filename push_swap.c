@@ -6,11 +6,11 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:14:04 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 14:44:23 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:10:40 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "./includes/push_swap.h"
 
 static void	finish_rotate(t_stack_node **stack, t_stack_node *cible, char aoub)
 {
@@ -50,16 +50,16 @@ void	ft_pushswap(t_stack_node **a, t_stack_node **b)
 	t_stack_node	*is_lowest;
 	size_t			size_a;
 
-	size_a = pile_size(a);
+	size_a = pile_size(*a);
 	while (size_a-- > 3)
 		pb(a, b);
 	sort_3(a);
 	while (*b)
 	{
-		set_pile_utils(a, b);
+		set_pile_utils(*a, *b);
 		sort_nodes(a, b);
 	}
-	is_lowest = find_lowest(a);
+	is_lowest = find_lowest(*a);
 	while (*a != is_lowest)
 	{
 		ra(a);

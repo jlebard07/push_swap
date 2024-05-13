@@ -6,11 +6,11 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:23:29 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/17 15:13:11 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 11:38:03 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "./includes/push_swap.h"
 
 static void	reverse_rotate(t_stack_node **stack)
 {

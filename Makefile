@@ -11,14 +11,13 @@
 # **************************************************************************** #
 
 WINDOWS = no
-NAME = libftprintf.a
+NAME = push_swap
+ARCHIVE = push_swap.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-SRC = find_in_stack.c check_error_int_array.c check_error_str.c \
-main.c node_init.c push_swap.c reverse_rotate.c rotate.c sort_3.c \
-stack_init.c stack_utils.c str_to_int_array.c swap.c
+CFLAGS = -Wall -Wextra -Werror -g
+SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
-AR = ar rcs
+AR = ar -rcs
 
 ifeq ($(WINDOWS), yes)
 	CLEAN = del /Q
@@ -28,23 +27,24 @@ else
 	FCLEAN = rm -f
 endif
 
-%.o : %.c
-	$(CC) $(CCFLAGS) -c -o $@ $<
-	
-$(NAME): $(OBJS)
-	$(MAKE) -C ./ft_printf
-	cp printf/libft.a $(NAME)
-	$(AR) $(NAME) $(OBJS)
-
 all: $(NAME)
+ 
+$(NAME): $(ARCHIVE)
+	$(CC) $< -o $@
+
+$(ARCHIVE): $(OBJS)
+	$(AR) $(ARCHIVE) $^
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	$(CLEAN) libft/*.o
 	$(CLEAN) *.o
 
 fclean: clean
 	$(FCLEAN) $(NAME)
-	$(FCLEAN) libft/libft.a
+	$(FCLEAN) *.a
+
 
 re: fclean all
 

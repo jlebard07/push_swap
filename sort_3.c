@@ -6,11 +6,11 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:52:17 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 14:32:11 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:11:14 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "./includes/push_swap.h"
 
 bool	is_sorted(t_stack_node *stack)
 {
@@ -50,7 +50,7 @@ void	sort_3(t_stack_node **stack)
 	t_stack_node	*highest;
 
 	highest = highest_data(*stack);
-	if (stack == highest)
+	if (*stack == highest)
 		ra(stack);
 	else if ((*stack)->next == highest)
 		rra(stack);

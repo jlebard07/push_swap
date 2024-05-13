@@ -6,11 +6,11 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:13:21 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 13:58:13 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:09:44 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "./includes/push_swap.h"
 
 size_t	pile_size(t_stack_node *stack)
 {
@@ -48,7 +48,7 @@ void	current_position(t_stack_node *stack)
 	}
 }
 
-void	target(t_stack_node *a, t_stack_node *b)
+void	target_node(t_stack_node *a, t_stack_node *b)
 {
 	long int		diff_match;
 	t_stack_node	*save_start;
@@ -59,9 +59,9 @@ void	target(t_stack_node *a, t_stack_node *b)
 	{
 		while (a)
 		{
-			if (0 < (long int)b->data - (long int)a->data < diff_match)
+			if (0 < (long int)a->data - (long int)b->data < diff_match)
 			{
-				diff_match = (long int)b->data - (long int)a->data;
+				diff_match = (long int)a->data - (long int)b->data;
 				b->target = a;
 			}
 			a = a->next;
@@ -78,7 +78,7 @@ void	set_price(t_stack_node *a, t_stack_node *b)
 
 	sa = pile_size(a);
 	sb = pile_size(b);
-	while (b->next != NULL)
+	while (b)
 	{
 		if (b->under_avg_rank == true
 			&& b->target->under_avg_rank == true)
@@ -104,7 +104,7 @@ void	set_cheapest(t_stack_node *stack)
 
 	cheapest = NULL;
 	i = INT_MAX;
-	while (stack->next != NULL)
+	while (stack)
 	{
 		if (i > stack->price)
 		{

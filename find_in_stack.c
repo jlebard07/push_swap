@@ -6,11 +6,11 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:30:18 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 14:31:35 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:14:04 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "./includes/push_swap.h"
 
 t_stack_node	*who_cheapest(t_stack_node *stack)
 {

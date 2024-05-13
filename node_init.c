@@ -6,11 +6,11 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:49:00 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 12:44:46 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:10:02 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "./includes/push_swap.h"
 
 void	set_pile_utils(t_stack_node *a, t_stack_node *b)
 {

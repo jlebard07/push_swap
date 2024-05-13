@@ -6,11 +6,11 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:14:05 by jlebard           #+#    #+#             */
-/*   Updated: 2024/04/24 11:19:21 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/13 11:38:10 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "./includes/push_swap.h"
 
 static void	rotate(t_stack_node **stack)
 {
