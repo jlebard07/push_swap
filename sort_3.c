@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:52:17 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/13 14:11:14 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/16 17:58:04 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ bool	is_sorted(t_stack_node *stack)
 {
 	int				i;
 
+	i = 0;
 	while (stack->next != NULL)
 	{
 		i = stack->data;
 		stack = stack->next;
-		if (i < stack->data)
+		if (i > stack->data)
 			return (false);
 	}
 	return (true);

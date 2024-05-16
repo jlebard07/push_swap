@@ -6,24 +6,39 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:12:22 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/13 14:11:54 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/16 16:37:10 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
+
+void	free_argv(char	**argv)
+{
+	int	i;
+
+	i = 0;
+	if (argv == NULL || *argv == NULL)
+		return ;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv - 1);
+}
 
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*temp;
 	t_stack_node	*current;
 
+	if (*stack == NULL)
+		return ;
 	current = *stack;
 	while (current)
 	{
 		temp = current->next;
 		free (current);
 		current = temp;
-	}	
+	}
+	*stack = NULL;
 }
 
 bool	ft_check_error_str(char *str)
@@ -43,28 +58,18 @@ bool	ft_check_error_str(char *str)
 	return (true);
 }
 
-bool	ft_check_error_int_array(int *int_arr)
+bool	ft_check_error_repetition(t_stack_node *stack, int n)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (int_arr[i])
-		i++;
-	while (i >= 0)
+	if (stack == NULL)
+		return (true);
+	while (stack)
 	{
-		while (int_arr[j])
+		if (n == stack->data)
 		{
-			if (int_arr[j] == int_arr[i])
-			{
-				ft_write_error();
-				return (false);
-			}
-			j++;
+			return (false);
+			ft_write_error();
 		}
-		i--;
-		j = 0;
+		stack = stack->next;
 	}
 	return (true);
 }

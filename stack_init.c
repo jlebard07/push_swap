@@ -6,82 +6,58 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:14:32 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/13 14:44:36 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/16 16:37:54 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-static int	*convert_in_int_array(char **argv)
+static	void	create_node(t_stack_node **stack, int n)
 {
-	int	i;
-	int	*int_array;
+	t_stack_node	*node;
+	t_stack_node	*last;
 
-	i = 1;
-	if (!argv[i])
-		return (NULL);
-	while (argv[i])
-		i++;
-	int_array = malloc((i + 1) * sizeof(int));
-	if (!int_array)
-		return (NULL);
+	if (stack == NULL)
+		return ;
+	node = malloc(sizeof(t_stack_node));
+	if (!node)
+		return ;
+	node->data = n;
+	node->next = NULL;
+	if (*stack == NULL)
+	{
+		node->previous = NULL;
+		*stack = node;
+	}
+	else
+	{
+		last = find_last(*stack);
+		last->next = node;
+		node->previous = last;
+	}
+}
+
+void	stack_init(t_stack_node **a, char **argv)
+{
+	long	nbr;
+	int		i;
+
 	i = 0;
 	while (argv[i])
 	{
-		int_array[i] = ft_atoi(argv[i]);
+		nbr = (long)ft_atoi(argv[i]);
+		if (nbr < INT_MIN || nbr > INT_MAX)
+		{
+			free_argv(argv);
+			free_stack(a);
+			ft_write_error();
+		}
+		if (ft_check_error_repetition(*a, (int)nbr) == 0)
+		{
+			free_argv(argv);
+			free_stack(a);
+		}
+		create_node(a, (int)nbr);
 		i++;
 	}
-	if (ft_check_error_int_array(int_array) == 0)
-	{
-		free (int_array);
-		return (NULL);
-	}
-	return (int_array);
-}
-
-static t_stack_node	*create_node(int n)
-{
-	t_stack_node	*a;
-
-	a = malloc(sizeof(t_stack_node));
-	if (!a)
-		return (NULL);
-	a->data = n;
-	a->previous = NULL;
-	a->next = NULL;
-	a->price = 0;
-	a->target = NULL;
-	a->cheapest = false;
-	a->under_avg_rank = false;
-	a->index = 0;
-	return (a);
-}
-
-t_stack_node	**stack_init(char **argv, int size)
-{
-	t_stack_node	**ba;
-	t_stack_node	**ca;
-	t_stack_node	**ea;
-	int				i;
-	int				*int_array;
-
-	int_array = convert_in_int_array(argv);
-	if (size == 0 || argv[1] == NULL || int_array == NULL)
-		return (NULL);
-	i = 0;
-	ca = NULL;
-	ba = NULL;
-	ea = NULL;
-	*ba = create_node(int_array[0]);
-	*ea = *ba;
-	while (int_array[i++] && i < size)
-	{
-		*ca = create_node(int_array[i]);
-		if (i == 1)
-			(*ba)->next = *ca;
-		(*ca)->previous = *ea;
-		(*ea)->next = *ca;
-		(*ea) = *ca;
-	}
-	return (ba);
 }

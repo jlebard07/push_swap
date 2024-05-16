@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/13 14:15:23 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/16 16:18:03 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ char			**ft_split(char const *s, char c);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_atoi(const char	*str);
 //gestion des erreurs et free
-bool			ft_check_error_int_array(int *int_arr);
+bool			ft_check_error_repetition(t_stack_node *stack, int n);
 bool			ft_check_error_str(char *str);
 void			ft_write_error(void);
 void			free_stack(t_stack_node **stack);
+void			free_argv(char	**argv);
 //initialisation des piles
-t_stack_node	**stack_init(char **argv, int size);
+void			stack_init(t_stack_node **a, char **argv);
 char			**split_and_check(char **argv);
 void			set_pile_utils(t_stack_node *a, t_stack_node *b);
 //operations sur les piles
@@ -52,6 +53,7 @@ void			set_cheapest(t_stack_node *stack);
 void			set_price(t_stack_node *a, t_stack_node *b);
 t_stack_node	*who_cheapest(t_stack_node *stack);
 t_stack_node	*find_lowest(t_stack_node *stack);
+t_stack_node	*find_last(t_stack_node *stack);
 //commandes
 void			pa(t_stack_node **a, t_stack_node **b);
 void			pb(t_stack_node **a, t_stack_node **b);

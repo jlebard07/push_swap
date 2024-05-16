@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:30:18 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/13 14:14:04 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/16 17:15:58 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_stack_node	*find_lowest(t_stack_node *stack)
 	i = INT_MAX;
 	while (stack)
 	{
-		if (stack->data < i)
+		if ((stack)->data < i)
 		{
 			lowest = stack;
 			i = stack->data;
@@ -35,4 +35,13 @@ t_stack_node	*find_lowest(t_stack_node *stack)
 		stack = stack->next;
 	}
 	return (lowest);
+}
+
+t_stack_node	*find_last(t_stack_node *stack)
+{
+	if (stack == NULL)
+		return (NULL);
+	while (stack->next != NULL)
+		stack = stack->next;
+	return (stack);
 }
