@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 			return (1);
 		argv = ft_split(argv[1], ' ');
 	}
-	stack_init(&a, argv + 1);
+	stack_init(&a, argv + 1, argc == 2);
 	if (!is_sorted(a))
 	{
 		if (pile_size(a) == 2)

@@ -21,7 +21,6 @@ void	free_argv(char	**argv)
 		return ;
 	while (argv[i])
 		free(argv[i++]);
-	free(argv - 1);
 }
 
 void	free_stack(t_stack_node **stack)
@@ -41,6 +40,15 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
+void	free_error(t_stack_node **stack, char **argv, bool n_argc)
+{
+	free_stack(stack);
+	if (n_argc == true)
+		free_argv(argv);
+	ft_putstr_fd("Error\n", 2);
+	exit (1);
+}
+
 bool	ft_check_error_str(char *str)
 {
 	int	i;
@@ -50,7 +58,7 @@ bool	ft_check_error_str(char *str)
 	{
 		if (str[i] < 48 || str[i] > 57 || str[i] != 32)
 		{
-			ft_write_error();
+			ft_putstr_fd("Error\n", 2);
 			return (false);
 		}
 		i++;
@@ -65,19 +73,8 @@ bool	ft_check_error_repetition(t_stack_node *stack, int n)
 	while (stack)
 	{
 		if (n == stack->data)
-		{
 			return (false);
-			ft_write_error();
-		}
 		stack = stack->next;
 	}
 	return (true);
-}
-
-void	ft_write_error(void)
-{
-	char	*error;
-
-	error = "Error\n";
-	ft_putstr_fd(error, 2);
 }

@@ -37,11 +37,11 @@ int				ft_atoi(const char	*str);
 //gestion des erreurs et free
 bool			ft_check_error_repetition(t_stack_node *stack, int n);
 bool			ft_check_error_str(char *str);
-void			ft_write_error(void);
 void			free_stack(t_stack_node **stack);
 void			free_argv(char	**argv);
+void			free_error(t_stack_node **stack, char **argv, bool n_argc);
 //initialisation des piles
-void			stack_init(t_stack_node **a, char **argv);
+void			stack_init(t_stack_node **a, char **argv, bool n_argc);
 char			**split_and_check(char **argv);
 void			set_pile_utils(t_stack_node *a, t_stack_node *b);
 //operations sur les piles

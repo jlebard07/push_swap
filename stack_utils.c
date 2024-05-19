@@ -51,6 +51,7 @@ void	current_position(t_stack_node *stack)
 void	target_node(t_stack_node *a, t_stack_node *b)
 {
 	long int		diff_match;
+	long int		diff;
 	t_stack_node	*save_start;
 
 	save_start = a;
@@ -59,12 +60,13 @@ void	target_node(t_stack_node *a, t_stack_node *b)
 	{
 		while (a)
 		{
-			if (0 < (long int)a->data - (long int)b->data < diff_match)
+			diff = (long int)a->data - (long int)b->data;
+			if (0 < diff && diff < diff_match)
 			{
 				diff_match = (long int)a->data - (long int)b->data;
 				b->target = a;
 			}
-			a = a->next;
+			a = a->next;	
 		}
 		b = b->next;
 		a = save_start;
