@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:12:22 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/16 16:37:10 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/21 12:19:57 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@ void	free_argv(char	**argv)
 	if (argv == NULL || *argv == NULL)
 		return ;
 	while (argv[i])
-		free(argv[i++]);
+		i++;
+	while (i >= 0)
+	{
+		free(argv[i]);
+		i--;
+	}
+	free (argv);
 }
 
 void	free_stack(t_stack_node **stack)
@@ -54,13 +60,10 @@ bool	ft_check_error_str(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
-		if (str[i] < 48 || str[i] > 57 || str[i] != 32)
-		{
-			ft_putstr_fd("Error\n", 2);
+		if ((str[i] < 48 || str[i] > 57) && str[i] != 32)
 			return (false);
-		}
 		i++;
 	}
 	return (true);

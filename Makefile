@@ -10,24 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-WINDOWS = yes
+NAME = push_swap
+CLEAN = rm -rf
+FCLEAN = rm -f
+CC = cc
 ARCHIVE = push_swap.a
 CFLAGS = -Wall -Wextra -Werror -g
 SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
 AR = ar -rcs
-
-ifeq ($(WINDOWS), yes)
-	NAME = push_swap.exe
-	CLEAN = del /Q /F
-	FCLEAN = del /Q /F
-	CC = gcc
-else
-	NAME = push_swap
-	CLEAN = rm -rf
-	FCLEAN = rm -f
-	CC = cc
-endif
 
 all: $(NAME)
  

@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:52:17 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/16 17:58:04 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/21 11:59:59 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ bool	is_sorted(t_stack_node *stack)
 	return (true);
 }
 
-static t_stack_node	*highest_data(t_stack_node *stack)
+t_stack_node	*highest_data(t_stack_node *stack)
 {
 	t_stack_node	*highest;
 	int				max;
 
 	max = INT_MIN;
 	highest = NULL;
-	while (stack->next != NULL)
+	while (stack)
 	{
 		if (stack->data > max)
 		{

@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:13:21 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/16 15:22:47 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/21 11:45:16 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,14 @@ void	target_node(t_stack_node *a, t_stack_node *b)
 			diff = (long int)a->data - (long int)b->data;
 			if (0 < diff && diff < diff_match)
 			{
-				diff_match = (long int)a->data - (long int)b->data;
+				diff_match = diff;
 				b->target = a;
 			}
-			a = a->next;	
+			a = a->next;
 		}
-		b = b->next;
 		a = save_start;
+		b = b->next;
+		diff_match = LONG_MAX;
 	}
 }
 
@@ -113,6 +114,7 @@ void	set_cheapest(t_stack_node *stack)
 			cheapest = stack;
 			i = stack->price;
 		}
+		stack->cheapest = false;
 		stack = stack->next;
 	}
 	cheapest->cheapest = true;
