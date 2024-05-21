@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:14:04 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 11:35:02 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/21 14:18:10 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_pushswap(t_stack_node **a, t_stack_node **b)
 
 	size_a = pile_size(*a);
 	if (size_a > 3)
-		put_highest_at_end(*a);
+		put_highest_at_end(a);
 	while (size_a-- > 3)
 		pb(a, b);
 	sort_3(a);

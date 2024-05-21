@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:15:23 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/16 17:54:21 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/21 16:33:32 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 static void	swap(t_stack_node **stack)
 {
-	t_stack_node	*temp;
-
-	temp = (*stack)->next;
-	if (temp == NULL)
+	if (*stack == NULL || pile_size(*stack) == 1)
 		return ;
-	(*stack)->next = temp->next;
-	temp->next = *stack;
-	(*stack)->previous = temp;
-	temp->previous = NULL;
-	*stack = temp;
+	*stack = (*stack)->next;
+	(*stack)->previous->previous = *stack;
+	(*stack)->previous->next = (*stack)->next;
+	if ((*stack)->next)
+		(*stack)->next->previous = (*stack)->previous;
+	(*stack)->next = (*stack)->previous;
+	(*stack)->previous = NULL;
 }
 
 void	sa(t_stack_node **a)

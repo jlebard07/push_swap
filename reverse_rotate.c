@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:23:29 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/16 17:53:36 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/21 15:34:16 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 static void	reverse_rotate(t_stack_node **stack)
 {
-	t_stack_node	*temp;
+	t_stack_node	*last;
+	t_stack_node	*second_last;
 
 	if (*stack == NULL || pile_size(*stack) == 1)
 		return ;
-	temp = *stack;
-	*stack = find_last(*stack);
-	(*stack)->previous->next = NULL;
-	(*stack)->previous = NULL;
-	(*stack)->next = temp;
-	temp->previous = *stack;
+	last = find_last(*stack);
+	second_last = last->previous;
+	second_last->next = NULL;
+	last->next = *stack;
+	(*stack)->previous = last;
+	(*stack) = last;
 }
 
 void	rra(t_stack_node **a)

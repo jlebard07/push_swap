@@ -6,7 +6,7 @@
 /*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 11:54:22 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/21 14:18:18 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ void			stack_init(t_stack_node **a, char **argv, bool n_argc);
 char			**split_and_check(char **argv);
 void			set_pile_utils(t_stack_node *a, t_stack_node *b);
 //operations sur les piles
-t_stack_node	*highest_data(t_stack_node *stack);
-void			put_highest_at_end(t_stack_node *stack);
+t_stack_node	*find_highest(t_stack_node *stack);
 void			current_position(t_stack_node *stack);
-void			put_highest_at_end(t_stack_node *stack);
+void			put_highest_at_end(t_stack_node **stack);
 size_t			pile_size(t_stack_node *stack);
 bool			is_sorted(t_stack_node *stack);
 void			target_node(t_stack_node *a, t_stack_node *b);
