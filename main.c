@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:35:15 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 16:36:08 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/22 12:10:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-static void	print_stack(t_stack_node *a)
-{
-	while (a)
-	{
-		printf("%d, ", a->data);
-		a = a->next;
-	}
-}
+// static void	print_stack(t_stack_node *a)
+// {
+// 	while (a)
+// 	{
+// 		printf("%d, ", a->data);
+// 		a = a->next;
+// 	}
+// }
 
 int	main(int argc, char **argv)
 {
@@ -42,7 +42,6 @@ int	main(int argc, char **argv)
 		else
 			ft_pushswap(&a, &b);
 	}
-	print_stack(a);
 	free_stack(&a);
 	return (0);
 }

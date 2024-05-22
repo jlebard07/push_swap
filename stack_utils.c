@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:13:21 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 14:38:30 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/22 12:09:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	target_node(t_stack_node *a, t_stack_node *b)
 	t_stack_node	*save_start;
 
 	save_start = a;
-	diff_match = LONG_MAX;
 	while (b)
 	{
+		diff_match = LONG_MAX;
 		while (a)
 		{
 			diff = (long int)a->data - (long int)b->data;
@@ -70,8 +70,9 @@ void	target_node(t_stack_node *a, t_stack_node *b)
 		}
 		a = save_start;
 		b = b->next;
-		diff_match = LONG_MAX;
 	}
+	if (diff_match == LONG_MAX)
+		b->target = find_lowest(a);
 }
 
 void	set_price(t_stack_node *a, t_stack_node *b)
@@ -100,7 +101,7 @@ void	set_price(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	set_cheapest(t_stack_node *stack)
+t_stack_node	*who_cheapest(t_stack_node *stack)
 {
 	t_stack_node	*cheapest;
 	int				i;
@@ -118,4 +119,5 @@ void	set_cheapest(t_stack_node *stack)
 		stack = stack->next;
 	}
 	cheapest->cheapest = true;
+	return (cheapest);
 }

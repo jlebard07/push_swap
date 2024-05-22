@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:53 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 14:18:18 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/22 12:11:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,20 @@ void			free_argv(char	**argv);
 void			free_error(t_stack_node **stack, char **argv, bool n_argc);
 //initialisation des piles
 void			stack_init(t_stack_node **a, char **argv, bool n_argc);
-char			**split_and_check(char **argv);
 void			set_pile_utils(t_stack_node *a, t_stack_node *b);
 //operations sur les piles
 t_stack_node	*find_highest(t_stack_node *stack);
 void			current_position(t_stack_node *stack);
-void			put_highest_at_end(t_stack_node **stack);
 size_t			pile_size(t_stack_node *stack);
 bool			is_sorted(t_stack_node *stack);
 void			target_node(t_stack_node *a, t_stack_node *b);
-void			set_cheapest(t_stack_node *stack);
 void			set_price(t_stack_node *a, t_stack_node *b);
 t_stack_node	*who_cheapest(t_stack_node *stack);
 t_stack_node	*find_lowest(t_stack_node *stack);
 t_stack_node	*find_last(t_stack_node *stack);
 //commandes
 void			pa(t_stack_node **a, t_stack_node **b);
-void			pb(t_stack_node **a, t_stack_node **b);
+void			pb(t_stack_node **a, t_stack_node **b);	
 void			sa(t_stack_node **a);
 void			sb(t_stack_node **b);
 void			ss(t_stack_node **a, t_stack_node **b);

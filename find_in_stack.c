@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   find_in_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:30:18 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 15:26:53 by jlebard          ###   ########.fr       */
+/*   Updated: 2024/05/22 12:11:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
-
-t_stack_node	*who_cheapest(t_stack_node *stack)
-{
-	while (stack && stack->cheapest == false)
-		stack = stack->next;
-	return (stack);
-}
-
-void	put_highest_at_end(t_stack_node **stack)
-{
-	t_stack_node	*highest;
-	t_stack_node	*last;
-
-	last = find_last(*stack);
-	highest = find_highest(*stack);
-	if (highest == *stack)
-		*stack = highest->next;
-	if (highest->previous)
-		highest->previous->next = highest->next;
-	if (highest->next)
-		highest->next->previous = highest->previous;
-	highest->next = NULL;
-	highest->previous = last;
-	last->next = highest;
-}
 
 t_stack_node	*find_lowest(t_stack_node *stack)
 {
