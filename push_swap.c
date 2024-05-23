@@ -5,90 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 12:14:04 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/22 12:09:50 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/23 13:37:22 by marvin            #+#    #+#             */
+/*   Updated: 2024/05/23 13:37:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-static void	rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *is_cheapest)
+static void	rotate_both(t_stack_node **a, t_stack_node **b,
+						t_stack_node *cheapest)
 {
-	while (*a != is_cheapest->target && *b != is_cheapest)
+	while (*a != cheapest->target && *b != cheapest)
 		rr(a, b);
-	current_position(*a);
-	current_position(*b);
+	set_index(*a);
+	set_index(*b);
 }
 
-static void	reverse_rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *is_cheapest)
+static void	reverse_rotate_both(t_stack_node **a, t_stack_node **b,
+						t_stack_node *cheapest)
 {
-	while (*a != is_cheapest->target && *b != is_cheapest)
+	while (*a != cheapest->target && *b != cheapest)
 		rrr(a, b);
-	current_position(*a);
-	current_position(*b);
+	set_index(*a);
+	set_index(*b);
 }
 
-static void	finish_rotate(t_stack_node **stack, t_stack_node *cible, char aoub)
+static void	finish_rotation(t_stack_node **stack, t_stack_node *set_first,
+						bool a)
 {
-	while (*stack != cible)
+	while (*stack != set_first)
 	{
-		if (aoub == 'a')
+		if (a)
 		{
-			if (cible->under_avg_rank == true)
-				rra(stack);
-			else
+			if (set_first->under_median)
 				ra(stack);
+			else
+				rra(stack);
 		}
 		else
-		{
-			if(cible->under_avg_rank == true)
-				rrb(stack);
-			else
+			if (set_first->under_median)
 				rb(stack);
-		}
-
+			else
+				rrb(stack);
 	}
 }
 
-static void	sort_nodes(t_stack_node **a, t_stack_node **b)
+static void	sort_and_push(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*is_cheapest;
+	t_stack_node *cheapest;
 
-	is_cheapest = who_cheapest(*b);
-	if (is_cheapest->under_avg_rank == true
-		&& is_cheapest->target->under_avg_rank == true)
-		reverse_rotate_both(a, b, is_cheapest);
-	else if (is_cheapest->under_avg_rank == false
-		&& is_cheapest->target->under_avg_rank == false)
-		rotate_both(a, b, is_cheapest);
-	finish_rotate(a, is_cheapest->target, 'a');
-	finish_rotate(b, is_cheapest, 'b');
+	cheapest = who_cheapest(*b);
+	if (cheapest->under_median && cheapest->target->under_median)
+		rotate_both(a, b, cheapest);
+	else if (!(cheapest->under_median)
+			&& !(cheapest->target->under_median))
+		reverse_rotate_both(a, b, cheapest);
+	finish_rotation(b, cheapest, false);
+	finish_rotation(a, cheapest->target, true);
 	pa(a, b);
 }
 
-void	ft_pushswap(t_stack_node **a, t_stack_node **b)
+void	push_swap(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*is_lowest;
-	size_t			size_a;
-
-	size_a = pile_size(*a);
-	if (size_a > 3)
-	{
-		while (size_a-- > 3)
-			pb(a, b);
-	}
+	int				sa;
+	t_stack_node	*smallest;
+	
+	sa = pile_size(*a);
+	while (sa-- > 3)
+		pb(a ,b);
 	sort_3(a);
 	while (*b)
 	{
-		set_pile_utils(*a, *b);
-		sort_nodes(a, b);
+		set_nodes(*a, *b);
+		sort_and_push(a, b);
 	}
-	current_position(*a);
-	is_lowest = find_lowest(*a);
-	if(is_lowest->under_avg_rank == true)
-		while (*a != is_lowest)
-			rra(a);
-	else
-		while (*a != is_lowest)
+	set_index(*a);
+	smallest = find_smallest(*a);
+	if (smallest->under_median)
+		while (*a != smallest)
 			ra(a);
+	else
+		while (*a != smallest)
+			rra(a);
 }

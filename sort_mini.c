@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort_mini.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 11:48:59 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 11:48:59 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/23 12:35:30 by jlebard            #+#    #+#             */
+/*   Updated: 2024/05/23 12:35:30 by jlebard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-int	main(int argc, char **argv)
+bool	is_sorted(t_stack_node *stack)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
+	if (!stack)
+		return (true);
+	while (stack->next != NULL)
+	{
+		if(stack->value > stack->next->value)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1)
-		return (1);
-	else if (argv[1][0] == '\0')
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	stack_init(&a, argv + 1, argc == 2);
-	if (!is_sorted(a))
-	{
-		if (pile_size(a) == 2)
-			sa(&a);
-		else if (pile_size(a) == 3)
-			sort_3(&a);
-		else
-			push_swap(&a, &b);
-	}
-	free_stack(&a);
+void	sort_3(t_stack_node **a)
+{
+	if (*a == find_biggest(*a))
+		ra(a);
+	else if ((*a)->next == find_biggest(*a))
+		rra(a);
+	if ((*a)->value > (*a)->next->value)
+		sa(a);
 }

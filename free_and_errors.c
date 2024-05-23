@@ -3,81 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_errors.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 11:12:22 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 12:19:57 by jlebard          ###   ########.fr       */
+/*   Created: 2024/05/23 11:57:23 by jlebard            #+#    #+#             */
+/*   Updated: 2024/05/23 11:57:23 by jlebard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-void	free_argv(char	**argv)
+bool	check_str(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (argv == NULL || *argv == NULL)
-		return ;
-	while (argv[i])
-		i++;
-	while (i >= 0)
+	while(str[i])
 	{
-		free(argv[i]);
-		i--;
+		if ((str[i] < '0' || str[i] > '9') && (str[i] != '-'
+				|| (str[i] == '-' && i != 0)
+				|| (str[i] == '-' && str[i + 1] == 0)))
+			return (false);
+		i++;
 	}
-	free (argv);
+	return (true);
+}
+
+bool	check_rep(t_stack_node *stack, int n)
+{
+	while (stack)
+	{
+		if (stack->value == n)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
 }
 
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*temp;
-	t_stack_node	*current;
-
-	if (*stack == NULL)
+	
+	if(!*stack || !stack)
 		return ;
-	current = *stack;
-	while (current)
+	while(*stack)
 	{
-		temp = current->next;
-		free (current);
-		current = temp;
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
 	}
 	*stack = NULL;
 }
 
-void	free_error(t_stack_node **stack, char **argv, bool n_argc)
-{
-	free_stack(stack);
-	if (n_argc == true)
-		free_argv(argv);
-	ft_putstr_fd("Error\n", 2);
-	exit (1);
-}
-
-bool	ft_check_error_str(char *str)
+void	free_argv(char **argv)
 {
 	int	i;
 
+	if (!argv ||!argv[0][1])
+		return;
 	i = 0;
-	while (str[i] != '\0')
-	{
-		if ((str[i] < 48 || str[i] > 57) && str[i] != 32)
-			return (false);
+	while(argv[i])
 		i++;
-	}
-	return (true);
+	while(i >= 0)
+		free(argv[i--]);
+	free(argv);
 }
 
-bool	ft_check_error_repetition(t_stack_node *stack, int n)
+void	error_free(t_stack_node **stack, char **argv, bool nb_argc)
 {
-	if (stack == NULL)
-		return (true);
-	while (stack)
-	{
-		if (n == stack->data)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
+	free_stack(stack);
+	if (nb_argc)
+		free_argv(argv);
+	write(2, "Error\n", 6);
+	exit (1);
 }

@@ -88,7 +88,7 @@ static int	ft_write_split(char **dest, char const *s, char c)
 	return (0);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	int		words;
 	char	**dest;

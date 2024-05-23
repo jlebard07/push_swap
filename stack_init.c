@@ -3,60 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 13:14:32 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/21 12:16:15 by jlebard          ###   ########.fr       */
+/*   Created: 2024/05/23 11:53:47 by jlebard            #+#    #+#             */
+/*   Updated: 2024/05/23 11:53:47 by jlebard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-static	void	create_node(t_stack_node **stack, int n)
+static long long int	ft_atoi(char *str)
 {
-	t_stack_node	*node;
+	char			*temp;
+	int				i;
+	int				n;
+	long long int	j;
+
+	temp = (char *)str;
+	i = 0;
+	n = 0;
+	j = 0;
+	while ((temp[i] > 8 && temp[i] < 14) || (temp[i] == 32))
+		i++;
+	if (temp[i] == 43 || temp[i] == 45)
+	{
+		if (temp[i] == 45)
+			n++;
+		i++;
+	}
+	while (temp[i] > 47 && temp[i] < 58)
+	{
+		j = j * 10 + (temp[i] - 48);
+		i++;
+	}
+	if (n == 1)
+		return (-j);
+	return (j);
+}
+
+static void	create_node(t_stack_node **stack, int n)
+{
+	t_stack_node	*temp;
 	t_stack_node	*last;
 
-	if (stack == NULL)
+	if (!stack)
 		return ;
-	node = malloc(sizeof(t_stack_node));
-	if (!node)
+	temp = malloc(sizeof(t_stack_node));
+	if (!temp)
 		return ;
-	node->data = n;
-	node->next = NULL;
-	if (*stack == NULL)
-	{
-		node->previous = NULL;
-		*stack = node;
+	temp->next = NULL;
+	temp->value = n;
+	if(stack && !*stack)
+	{	
+		temp->previous = NULL;
+		*stack = temp;
 	}
-	else
+	else if(*stack)
 	{
 		last = find_last(*stack);
-		last->next = node;
-		node->previous = last;
+		last->next = temp;
+		temp->previous = last;
 	}
 }
 
-void	stack_init(t_stack_node **a, char **argv, bool n_argc)
+void	stack_init(t_stack_node **stack, char **argv,
+					bool nb_argc)
 {
-	long	nbr;
-	int		i;
+	int				i;
+	long long int	n;
 
 	i = 0;
-	if (n_argc == true)
+	if (nb_argc)
 		argv = argv - 1;
-	while (argv[i])
+	while(argv[i])
 	{
-		if (ft_check_error_str(argv[i]) == 0)
-			free_error(a, argv, n_argc);
-		nbr = (long)ft_atoi(argv[i]);
-		if (nbr < INT_MIN || nbr > INT_MAX)
-			free_error(a, argv, n_argc);
-		if (ft_check_error_repetition(*a, (int)nbr) == 0)
-			free_error(a, argv, n_argc);
-		create_node(a, (int)nbr);
+		if (!(check_str(argv[i])))
+			error_free(stack, argv, nb_argc);
+		n = ft_atoi(argv[i]);
+		if (n < INT_MIN || n > INT_MAX)
+			error_free(stack, argv, nb_argc);
+		if (!(check_rep(*stack, (int)n)))
+			error_free(stack, argv, nb_argc);
+		create_node(stack, n);
 		i++;
 	}
-	if (n_argc == true)
+	if (nb_argc)
 		free_argv(argv);
 }

@@ -3,121 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 15:13:21 by jlebard           #+#    #+#             */
-/*   Updated: 2024/05/22 12:09:03 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/23 12:27:52 by jlebard            #+#    #+#             */
+/*   Updated: 2024/05/23 12:27:52 by jlebard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-size_t	pile_size(t_stack_node *stack)
+t_stack_node	*find_last(t_stack_node *stack)
 {
-	size_t			i;
-
-	if (stack == NULL)
-		return (0);
-	i = 0;
-	while (stack)
-	{
-		i++;
+	while (stack->next)
 		stack = stack->next;
-	}
-	return (i);
+	return (stack);
 }
 
-void	current_position(t_stack_node *stack)
+t_stack_node	*find_biggest(t_stack_node *stack)
 {
 	int				i;
-	int				avg_rank;
+	t_stack_node	*biggest;
+	
+	i = INT_MIN;
+	biggest = NULL;
+	while (stack)
+	{
+		if (stack->value > i)
+		{
+			i = stack->value;
+			biggest = stack;
+		}
+		stack = stack->next;
+	}
+	return (biggest);
+}
 
-	avg_rank = pile_size(stack) / 2;
-	if (!stack)
-		return ;
+t_stack_node	*find_smallest(t_stack_node *stack)
+{
+	int				i;
+	t_stack_node	*smallest;
+
+	i = INT_MAX;
+	smallest = NULL;
+	while (stack)
+	{
+		if (i > stack->value)
+		{
+			i = stack->value;
+			smallest = stack;
+		}
+		stack = stack->next;
+	}
+	return (smallest);
+}
+
+int	pile_size(t_stack_node *stack)
+{
+	int	i;
+
 	i = 0;
 	while (stack)
 	{
-		stack->index = i;
-		if (i < avg_rank)
-			stack->under_avg_rank = true;
-		else
-			stack->under_avg_rank = false;
-		i++;
 		stack = stack->next;
+		i++;
 	}
-}
-
-void	target_node(t_stack_node *a, t_stack_node *b)
-{
-	long int		diff_match;
-	long int		diff;
-	t_stack_node	*save_start;
-
-	save_start = a;
-	while (b)
-	{
-		diff_match = LONG_MAX;
-		while (a)
-		{
-			diff = (long int)a->data - (long int)b->data;
-			if (0 < diff && diff < diff_match)
-			{
-				diff_match = diff;
-				b->target = a;
-			}
-			a = a->next;
-		}
-		a = save_start;
-		b = b->next;
-	}
-	if (diff_match == LONG_MAX)
-		b->target = find_lowest(a);
-}
-
-void	set_price(t_stack_node *a, t_stack_node *b)
-{
-	int				sa;
-	int				sb;
-
-	sa = pile_size(a);
-	sb = pile_size(b);
-	while (b)
-	{
-		if (b->under_avg_rank == true
-			&& b->target->under_avg_rank == true)
-			b->price = b->index + b->target->index;
-		else if (b->under_avg_rank == false
-			&& b->target->under_avg_rank == true)
-			b->price = sb - b->index + 1 + b->target->index;
-		else if (b->under_avg_rank == true
-			&& b->target->under_avg_rank == false)
-			b->price = b->index + 1 + sa - b->target->index;
-		else if (sb - b->index == sa - b->target->index)
-			b->price = sb - b->index + 1 + sa - b->target->index;
-		else
-			b->price = sb - b->index + 2 + sa - b->target->index;
-		b = b->next;
-	}
+	return (i);
 }
 
 t_stack_node	*who_cheapest(t_stack_node *stack)
 {
 	t_stack_node	*cheapest;
-	int				i;
-
-	cheapest = NULL;
-	i = INT_MAX;
-	while (stack)
-	{
-		if (i > stack->price)
-		{
-			cheapest = stack;
-			i = stack->price;
-		}
-		stack->cheapest = false;
+	
+	if (!stack)
+		return (NULL);
+	while (!(stack->cheapest))
 		stack = stack->next;
-	}
-	cheapest->cheapest = true;
+	cheapest = stack;
 	return (cheapest);
 }
