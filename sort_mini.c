@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_mini.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 12:35:30 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 12:35:30 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 15:02:44 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 15:02:44 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	is_sorted(t_stack_node *stack)
 		return (true);
 	while (stack->next != NULL)
 	{
-		if(stack->value > stack->next->value)
+		if (stack->value > stack->next->value)
 			return (false);
 		stack = stack->next;
 	}

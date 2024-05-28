@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 11:48:59 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 11:48:59 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 14:56:25 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 14:56:25 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "./includes/push_swap.h"
 
 int	main(int argc, char **argv)

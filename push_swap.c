@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 13:37:22 by marvin            #+#    #+#             */
-/*   Updated: 2024/05/23 13:37:22 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/28 14:57:23 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 14:57:23 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "./includes/push_swap.h"
 
 static void	rotate_both(t_stack_node **a, t_stack_node **b,
@@ -43,22 +42,24 @@ static void	finish_rotation(t_stack_node **stack, t_stack_node *set_first,
 				rra(stack);
 		}
 		else
+		{
 			if (set_first->under_median)
 				rb(stack);
 			else
 				rrb(stack);
+		}
 	}
 }
 
 static void	sort_and_push(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node *cheapest;
+	t_stack_node	*cheapest;
 
 	cheapest = who_cheapest(*b);
 	if (cheapest->under_median && cheapest->target->under_median)
 		rotate_both(a, b, cheapest);
 	else if (!(cheapest->under_median)
-			&& !(cheapest->target->under_median))
+		&& !(cheapest->target->under_median))
 		reverse_rotate_both(a, b, cheapest);
 	finish_rotation(b, cheapest, false);
 	finish_rotation(a, cheapest->target, true);
@@ -69,10 +70,10 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 {
 	int				sa;
 	t_stack_node	*smallest;
-	
+
 	sa = pile_size(*a);
 	while (sa-- > 3)
-		pb(a ,b);
+		pb(a, b);
 	sort_3(a);
 	while (*b)
 	{

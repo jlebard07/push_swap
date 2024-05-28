@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_errors.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 11:57:23 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 11:57:23 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 14:55:34 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 14:55:34 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "./includes/push_swap.h"
 
 bool	check_str(char *str)
@@ -17,7 +16,7 @@ bool	check_str(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if ((str[i] < '0' || str[i] > '9') && (str[i] != '-'
 				|| (str[i] == '-' && i != 0)
@@ -42,10 +41,10 @@ bool	check_rep(t_stack_node *stack, int n)
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*temp;
-	
-	if(!*stack || !stack)
+
+	if (!*stack || !stack)
 		return ;
-	while(*stack)
+	while (*stack)
 	{
 		temp = *stack;
 		*stack = (*stack)->next;
@@ -59,11 +58,11 @@ void	free_argv(char **argv)
 	int	i;
 
 	if (!argv ||!argv[0][1])
-		return;
+		return ;
 	i = 0;
-	while(argv[i])
+	while (argv[i])
 		i++;
-	while(i >= 0)
+	while (i >= 0)
 		free(argv[i--]);
 	free(argv);
 }

@@ -46,7 +46,7 @@ static void	set_target(t_stack_node *a, t_stack_node *b)
 		while (temp)
 		{
 			if (temp->value > b->value
-			&& temp->value < smallest_bigger)
+				&& temp->value < smallest_bigger)
 			{
 				smallest_bigger = temp->value;
 				target = temp;

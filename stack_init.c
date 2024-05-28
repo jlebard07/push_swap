@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 11:53:47 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 11:53:47 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 15:03:10 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 15:03:10 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ static void	create_node(t_stack_node **stack, int n)
 		return ;
 	temp->next = NULL;
 	temp->value = n;
-	if(stack && !*stack)
+	if (stack && !*stack)
 	{	
 		temp->previous = NULL;
 		*stack = temp;
 	}
-	else if(*stack)
+	else if (*stack)
 	{
 		last = find_last(*stack);
 		last->next = temp;
@@ -75,7 +75,7 @@ void	stack_init(t_stack_node **stack, char **argv,
 	i = 0;
 	if (nb_argc)
 		argv = argv - 1;
-	while(argv[i])
+	while (argv[i])
 	{
 		if (!(check_str(argv[i])))
 			error_free(stack, argv, nb_argc);

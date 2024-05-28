@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 12:27:52 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 12:27:52 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 14:58:56 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 14:58:56 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "./includes/push_swap.h"
 
 t_stack_node	*find_last(t_stack_node *stack)
@@ -23,7 +22,7 @@ t_stack_node	*find_biggest(t_stack_node *stack)
 {
 	int				i;
 	t_stack_node	*biggest;
-	
+
 	i = INT_MIN;
 	biggest = NULL;
 	while (stack)
@@ -73,7 +72,7 @@ int	pile_size(t_stack_node *stack)
 t_stack_node	*who_cheapest(t_stack_node *stack)
 {
 	t_stack_node	*cheapest;
-	
+
 	if (!stack)
 		return (NULL);
 	while (!(stack->cheapest))

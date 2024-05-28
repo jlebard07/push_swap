@@ -16,7 +16,7 @@ static void	rotate(t_stack_node **stack)
 {
 	t_stack_node	*last;
 	t_stack_node	*second;
-	
+
 	if (!*stack || pile_size(*stack) == 1)
 		return ;
 	last = find_last(*stack);

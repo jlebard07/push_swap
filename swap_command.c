@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 12:41:16 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 12:41:16 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 15:02:02 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 15:02:02 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	swap(t_stack_node **stack)
 	*stack = (*stack)->next;
 	(*stack)->previous->previous = *stack;
 	(*stack)->previous->next = (*stack)->next;
-	if((*stack)->next)
+	if ((*stack)->next)
 		(*stack)->next->previous = (*stack)->previous;
 	(*stack)->next = (*stack)->previous;
 	(*stack)->previous = NULL;

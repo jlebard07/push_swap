@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 13:04:37 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 13:04:37 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 15:00:19 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 15:00:19 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	push(t_stack_node **dest, t_stack_node **source)
 	if (*dest)
 	{
 		temp->next = *dest;
-		(*dest)->previous= temp;
+		(*dest)->previous = temp;
 		*dest = temp;
 	}
 	else

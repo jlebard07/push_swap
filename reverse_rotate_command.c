@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_command.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlebard <jlebard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jlebard <jlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 13:21:47 by jlebard            #+#    #+#             */
-/*   Updated: 2024/05/23 13:21:47 by jlebard           ###   ########.fr       */
+/*   Created: 2024/05/28 15:00:36 by jlebard           #+#    #+#             */
+/*   Updated: 2024/05/28 15:00:36 by jlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	reverse_rotate(t_stack_node **stack)
 {
-	t_stack_node *last;
+	t_stack_node	*last;
 
 	if (!*stack || pile_size(*stack) == 1)
 		return ;
