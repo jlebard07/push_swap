@@ -14,19 +14,16 @@ NAME = push_swap
 CLEAN = rm -rf
 FCLEAN = rm -f
 CC = cc
-ARCHIVE = push_swap.a
 CFLAGS = -Wall -Wextra -Werror -g
-SRC = $(wildcard *.c)
+SRC = free_and_errors.c ft_split.c main.c push_command.c push_swap.c \
+reverse_rotate_command.c rotate_command.c set_nodes.c sort_mini.c stack_init.c \
+stack_utils.c swap_command.c
 OBJS = $(SRC:.c=.o)
-AR = ar -rcs
 
 all: $(NAME)
  
-$(NAME): $(ARCHIVE)
-	$(CC) $< -o $@
-
-$(ARCHIVE): $(OBJS)
-	$(AR) $(ARCHIVE) $^
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -36,8 +33,6 @@ clean:
 
 fclean: clean
 	$(FCLEAN) $(NAME)
-	$(FCLEAN) *.a
-
 
 re: fclean all
 

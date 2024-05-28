@@ -57,7 +57,7 @@ void	free_argv(char **argv)
 {
 	int	i;
 
-	if (!argv ||!argv[0][1])
+	if (!argv ||!argv[0][0])
 		return ;
 	i = 0;
 	while (argv[i])
