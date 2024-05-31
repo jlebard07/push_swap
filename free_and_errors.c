@@ -20,7 +20,10 @@ bool	check_str(char *str)
 	{
 		if ((str[i] < '0' || str[i] > '9') && (str[i] != '-'
 				|| (str[i] == '-' && i != 0)
-				|| (str[i] == '-' && str[i + 1] == 0)))
+				|| (str[i] == '-' && str[i + 1] == 0))
+			&& (str[i] != '+'
+				|| (str[i] == '+' && i != 0)
+				|| (str[i] == '+' && str[i + 1] == 0)))
 			return (false);
 		i++;
 	}
